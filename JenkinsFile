@@ -15,7 +15,6 @@ pipeline {
                 script {
                     docker.image('golang-app').inside {
                         sh 'go version'
-                        sh 'go build -o main'
                         sh 'go test ./...'
                     }
                 }
