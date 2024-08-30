@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    docker.build('golang-app', '.')
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    docker.image('golang-app').inside {
+                        sh 'go version'
+                        sh 'go build -o main'
+                        sh 'go test ./...'
+                    }
+                }
+            }
+        }
+    }
+}
