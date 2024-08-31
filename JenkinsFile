@@ -5,9 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build('golang-app', '-f Dockerfile.builder .')
+                    docker.build('golang-app', '-f Dockerfile .')
                 }
             }
         }
+
     }
 }
