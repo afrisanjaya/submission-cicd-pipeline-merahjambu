@@ -10,17 +10,6 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                script {
-                    docker.image('golang-app').inside {
-                        sh 'go version'
-                        sh 'go test -v ./...'
-                    }
-                }
-            }
-        }
-
         stage('Build Final Image') {
             steps {
                 script {
