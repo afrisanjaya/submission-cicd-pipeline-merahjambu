@@ -9,8 +9,15 @@ RUN go mod download
 
 COPY . .
 
-RUN mkdir -p /root/.cache/go-build && chmod -R 777 /root/.cache
-
 RUN go test ./...
 
 RUN go build -o main .
+
+FROM gcr.io/distroless/base
+
+COPY --from=builder /app/main /main
+
+EXPOSE 8181
+
+# Run the application
+ENTRYPOINT ["/main"]
