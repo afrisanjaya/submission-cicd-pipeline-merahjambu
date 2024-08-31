@@ -1,9 +1,0 @@
-# Final Stage
-FROM gcr.io/distroless/static-debian11
-
-
-COPY --from=builder /app/main /main
-
-EXPOSE 8181
-
-ENTRYPOINT ["/main"]
