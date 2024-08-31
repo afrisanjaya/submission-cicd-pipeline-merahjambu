@@ -1,5 +1,5 @@
 # Final Stage
-FROM istio/distroless:latest
+FROM gcr.io/distroless/static-debian11
 
 
 COPY --from=builder /app/main /main
