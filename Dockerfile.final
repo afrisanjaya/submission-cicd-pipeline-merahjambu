@@ -1,5 +1,6 @@
 # Final Stage
-FROM gcr.io/distroless/base
+FROM istio/distroless:latest
+
 
 COPY --from=builder /app/main /main
 
