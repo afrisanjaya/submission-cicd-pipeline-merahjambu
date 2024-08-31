@@ -7,11 +7,9 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
-RUN mkdir -p /root/.cache/go-build && chown -R nobody:nogroup /root/.cache
-
-USER nobody
-
 COPY . .
+
+RUN mkdir -p /root/.cache/go-build && chmod -R 777 /root/.cache
 
 RUN go test ./...
 
