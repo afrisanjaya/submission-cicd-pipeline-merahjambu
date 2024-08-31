@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build('golang-app', '.')
+                    docker.build('golang-app', '-f Dockerfile.builder .')
                 }
             }
         }
@@ -15,9 +15,16 @@ pipeline {
                 script {
                     docker.image('golang-app').inside {
                         sh 'go version'
-                        // sh 'go build -o main'
-                        // sh 'go test -v ./...'
+                        sh 'go test -v ./...'
                     }
+                }
+            }
+        }
+
+        stage('Build Final Image') {
+            steps {
+                script {
+                    docker.build('golang-app-final', '-f Dockerfile.final .')
                 }
             }
         }

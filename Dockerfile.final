@@ -1,0 +1,8 @@
+# Final Stage
+FROM gcr.io/distroless/base
+
+COPY --from=builder /app/main /main
+
+EXPOSE 8181
+
+ENTRYPOINT ["/main"]
